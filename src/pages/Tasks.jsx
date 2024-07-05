@@ -22,7 +22,7 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm({
     resolver: zodResolver(taskSchema),
   });
 
@@ -131,7 +131,7 @@ const Tasks = () => {
                         <PopoverContent>
                           <Calendar
                             mode="single"
-                            selected={new Date(task.dueDate)}
+                            selected={task.dueDate ? new Date(task.dueDate) : null}
                             onSelect={(date) => setValue("dueDate", date)}
                           />
                         </PopoverContent>
